@@ -127,31 +127,31 @@ function unzip ($file) {
     $fullFile = Get-ChildItem -Path $pwd -Filter $file | ForEach-Object { $_.FullName }
     Expand-Archive -Path $fullFile -DestinationPath $pwd
 }
-function hb {
-    if ($args.Length -eq 0) {
-        Write-Error "No file path specified."
-        return
-    }
+# function hb {
+#     if ($args.Length -eq 0) {
+#         Write-Error "No file path specified."
+#         return
+#     }
     
-    $FilePath = $args[0]
+#     $FilePath = $args[0]
     
-    if (Test-Path $FilePath) {
-        $Content = Get-Content $FilePath -Raw
-    } else {
-        Write-Error "File path does not exist."
-        return
-    }
+#     if (Test-Path $FilePath) {
+#         $Content = Get-Content $FilePath -Raw
+#     } else {
+#         Write-Error "File path does not exist."
+#         return
+#     }
     
-    $uri = "http://bin.christitus.com/documents"
-    try {
-        $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -ErrorAction Stop
-        $hasteKey = $response.key
-        $url = "http://bin.christitus.com/$hasteKey"
-        Write-Output $url
-    } catch {
-        Write-Error "Failed to upload the document. Error: $_"
-    }
-}
+#     $uri = "http://bin.christitus.com/documents"
+#     try {
+#         $response = Invoke-RestMethod -Uri $uri -Method Post -Body $Content -ErrorAction Stop
+#         $hasteKey = $response.key
+#         $url = "http://bin.christitus.com/$hasteKey"
+#         Write-Output $url
+#     } catch {
+#         Write-Error "Failed to upload the document. Error: $_"
+#     }
+# }
 function grep($regex, $dir) {
     if ( $dir ) {
         Get-ChildItem $dir | select-string $regex
@@ -226,7 +226,7 @@ function gc { param($m) git commit -m "$m" }
 
 function gp { git push }
 
-function g { z Github }
+function g { z projects }
 
 function gcom {
     git add .
